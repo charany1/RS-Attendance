@@ -9,16 +9,9 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
-
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
-
 import digimpact.org.rsattendance.R;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 public class AttendanceActivity extends AppCompatActivity {
 
@@ -28,6 +21,7 @@ public class AttendanceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.attendance_activity);
 
         mImeiTextView = (TextView)findViewById(R.id.imei_text_view);
@@ -36,13 +30,13 @@ public class AttendanceActivity extends AppCompatActivity {
 
         TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
         String id = telephonyManager.getDeviceId();
-        mImeiTextView.setText(id);
+        mImeiTextView.setText("IMEI: "+id);
 
         Log.d("Attendance",id);
 
         Long time = System.currentTimeMillis()/1000;
 
-        mTimeStampView.setText(time.toString());
+        mTimeStampView.setText("Timestamp: "+time.toString());
 
 
 
