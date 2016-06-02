@@ -6,6 +6,7 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import digimpact.org.rsattendance.R;
 
@@ -30,8 +31,17 @@ public class SettingsActivity extends AppCompatActivity {
             addPreferencesFromResource(R.xml.preferences);
 
             //getting and setting summary of preference on loading
-            EditTextPreference serverSetting = (EditTextPreference) getPreferenceScreen().getPreference(0);
-            serverSetting.setSummary("www.google.com");
+            EditTextPreference serverSetting = (EditTextPreference) getPreferenceScreen()
+                    .getPreference(0);
+
+            String currentServerUrl = serverSetting.getText();
+            if(currentServerUrl == null || currentServerUrl.equals("")){
+                serverSetting.setSummary(getString(R.string.please_enter_server_url));
+            }else{
+                serverSetting.setSummary(currentServerUrl.trim());
+            }
+
+
         }
 
         /**
@@ -49,7 +59,8 @@ public class SettingsActivity extends AppCompatActivity {
 
             if(key.equals("server_url")){
                 EditTextPreference serverSetting = (EditTextPreference) findPreference("server_url");
-                serverSetting.setSummary(serverSetting.getEditText().getText());
+
+                serverSetting.setSummary(sharedPreferences.getString("server_url",""));
             }
 
         }

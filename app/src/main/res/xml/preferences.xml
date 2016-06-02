@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <EditTextPreference>
-        android:title="Server url"
-        android:key="server_url"
-        android:summary="www.google.com"
 
-    </EditTextPreference>
+    <EditTextPreference
+        android:key="server_url"
+        android:title="@string/server_url"
+        android:dialogTitle="Server Url" />
 </PreferenceScreen>

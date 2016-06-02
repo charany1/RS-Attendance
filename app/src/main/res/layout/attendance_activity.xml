@@ -35,7 +35,8 @@
         android:text="@string/mark_attendance"
         android:id="@+id/mark_attendance_button"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="markAttendanceButtonHandler"/>
 
     <LinearLayout
         android:orientation="vertical"
